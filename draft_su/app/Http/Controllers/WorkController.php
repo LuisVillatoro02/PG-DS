@@ -48,7 +48,10 @@ class WorkController extends Controller
             'terminal'=> 'required',
             'product' => 'required',
             'vessel'  => 'required',
-            'file_status'=>'required'
+            'file_status'=>'required',
+            'eta'=>'required',
+            'charge'=>'required',
+            'types'=>'required'
         ]);
         Work_Order::create($request->all());
         return redirect()->route('works.index');
@@ -91,7 +94,10 @@ class WorkController extends Controller
             'terminal'=> 'required',
             'product' => 'required',
             'vessel'  => 'required',
-            'file_status'=>'required'
+            'file_status'=>'required',
+            'eta'=>'required',
+            'charge'=>'required',
+            'types'=>'required'
         ]);
         $work->update($request->all());
         return redirect()->route('works.index');

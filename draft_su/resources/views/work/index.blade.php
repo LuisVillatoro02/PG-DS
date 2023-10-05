@@ -22,6 +22,9 @@
                                     <th style="color:#fff">Product</th>
                                     <th style="color:#fff">Vessel</th>
                                     <th style="color:#fff">File Status</th>
+                                    <th style="color:#fff">ETA</th>
+                                    <th style="color:#fff">Quantity</th>
+                                    <th style="color:#fff">Type</th>
                                     <th style="color:#fff">Acctions</th>
                                 </thead>
                                 <tbody>
@@ -34,6 +37,9 @@
                                             <td>{{ $work->product }}</td>
                                             <td>{{ $work->vessel }}</td>
                                             <td>{{ $work->file_status }}</td>
+                                            <td>{{ $work->eta }}</td>
+                                            <td>{{ $work->charge }}MT</td>
+                                            <td>{{ $work->types }}</td>
                                             <td>
                                                 <form action="{{ route('works.destroy',$work->id) }}" method="POST">
                                                     @can('editar-work')

@@ -17,5 +17,8 @@ class Work_Order extends Model
         'product',
         'vessel',
         'file_status',
+        'eta',
+        'charge',
+        'types',
     ];
 }

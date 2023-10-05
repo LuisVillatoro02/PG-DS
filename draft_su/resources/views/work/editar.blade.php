@@ -63,6 +63,24 @@
                                         </div>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="name">ETA</label>
+                                            <input type="datetime-local" name="eta" class="form-control" value="{{ $work->eta }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="name">Quantity</label>
+                                            <input type="number" name="charge" class="form-control" value="{{ $work->charge }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
+                                        <div class="form-group">
+                                            <label for="name">Type</label>
+                                            <input type="text" name="types" class="form-control" value="{{ $work->types }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12">
                                             <button type="submit" class="btn btn-primary">Update</button>
                                     </div>
                                 </div>

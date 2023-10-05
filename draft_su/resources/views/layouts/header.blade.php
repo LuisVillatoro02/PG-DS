@@ -1,7 +1,74 @@
-<form class="form-inline mr-auto" action="#">
+<form class="form-inline mr-auto" action="# ">
     <ul class="navbar-nav mr-3">
         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg"><i class="fas fa-bars"></i></a></li>
     </ul>
+</form>
+
+<?php
+// Procesar el formulario cuando se envía
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Realizar la conexión a la base de datos aquí
+    $servername = "localhost";
+    $username = "root";
+    $password = "1234";
+    $dbname = "draft_su";
+
+    $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+    if (!$conn) {
+        die("Error de conexión: " . mysqli_connect_error());
+    }
+
+    // Obtener el número de archivo ingresado en el formulario
+    $fileNumber = isset($_POST["file_no"]) ? $_POST["file_no"] : null;
+
+    // Verificar si se ingresó un valor en el campo de búsqueda
+    if ($fileNumber !== null) {
+        // Realizar la consulta a la base de datos
+        $sql = "SELECT * FROM work_order WHERE file_no = $fileNumber";
+        $result = mysqli_query($conn, $sql);
+
+        // Mostrar los resultados en una tabla
+        if (mysqli_num_rows($result) > 0) {
+            echo "<table border='1' style='border-collapse:separate; margin-right:50px; border-spacing: 10px 5px; border: none;'>";
+            echo "<br>";
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr style=''>";
+
+                echo "<td style='color:white;'>" . $row["file_no"] . "</td>";
+
+                echo "<td style='color:white;'>" . $row["terminal"] . "</td>";
+
+                echo "<td style='color:white;'>" . $row["product"] . "</td>";
+
+                echo "<td style='color:white;'>" . $row["vessel"] . "</td>";
+
+                echo "<td style='color:white;'>" . $row["charge"] . "</td>";
+
+                echo "<td style='color:white;'>" . $row["types"] . "</td>";
+
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "";
+        }
+    } else {
+        echo "<p>Por favor, ingrese un número de archivo válido para realizar la búsqueda.</p>";
+    }
+
+    // Cerrar la conexión a la base de datos
+    mysqli_close($conn);
+}
+?>
+
+
+
+<form class="form-inline my-2 my-lg-0" id="search-form" method="POST" action="">
+    @csrf
+    @method('GET')
+    <input class="form-control mr-sm-2" type="number" placeholder="File Number" name="file_no" aria-label="Search">
+    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
 </form>
 <ul class="navbar-nav navbar-right">
 
@@ -12,9 +79,8 @@
                 <img alt="image" src="{{ asset('img/logo.png') }}"
                      class="rounded-circle mr-1 thumbnail-rounded user-thumbnail ">
                 <div class="d-sm-none d-lg-inline-block">
-                    Hi, {{\Illuminate\Support\Facades\Auth::user()->first_name}}</div>
+                    Hi, {{\Illuminate\Support\Facades\Auth::user()->name}}</div>
             </a>
-
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-title">
                     Welcome, {{\Illuminate\Support\Facades\Auth::user()->name}}</div>

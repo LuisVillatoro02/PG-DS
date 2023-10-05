@@ -5,6 +5,7 @@ use app\Http\Controllers\HomeController;
 use app\Http\Controllers\RolController;
 use app\Http\Controllers\UsuarioController;
 use app\Http\Controllers\WorkController;
+use app\Http\Controllers\ConditionController;
 
 
 
@@ -33,4 +34,5 @@ Route::group(['middleware' => ['auth']], function(){
     Route::resource('roles', App\Http\Controllers\RolController::class);
     Route::resource('usuarios', App\Http\Controllers\UsuarioController::class);
     Route::resource('works', App\Http\Controllers\WorkController::class);
+    Route::resource('conditions', App\Http\Controllers\ConditionController::class);
 });
